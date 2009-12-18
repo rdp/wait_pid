@@ -1,7 +1,20 @@
-require 'spec/autorun'
 require 'rubygems' if RUBY_VERSION < '1.9'
+require 'spec/autorun'
 require 'sane'
 require_rel '../lib/wait_pid'
+
+
+def spawn command # should return a pid
+ if RUBY_VERSION < '1.9'
+   if OS.linux?
+     fork { system(command) }
+   else
+     raise 'todo'
+   end
+ else
+   Process.spawn command
+ end
+end
 
 describe "wait pid" do
 
@@ -15,7 +28,7 @@ describe "wait pid" do
   end
 
   it "should wait on a pid" do
-    a = Process.spawn 'ruby -e "sleep 1"'
+    a = spawn 'ruby -e "sleep 1"'
     Thread.new { Process.wait a } # gotta wait for it, or, as child, it never "really" ends in terms of sig 0
     start = Time.now
     WaitPid.wait_pid(a)
