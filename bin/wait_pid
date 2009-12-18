@@ -1,0 +1,9 @@
+require 'wait_pid'
+
+if ARGV.include?('-h') || ARGV.include('--help')
+  puts "syntax: pid"
+  exit
+end
+
+raise 'only one pid currently supported' if ARGV.length > 1
+WaitPid.wait_pid ARGV[0].to_i
