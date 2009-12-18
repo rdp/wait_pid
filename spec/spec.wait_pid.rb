@@ -35,8 +35,7 @@ describe "wait pid" do
     assert(Time.now - start > 0.5)
   end
 
-  it "should work on windows and linux"
-  it "should use the spiffy way on windows"
-  it "should poll on linux"
+  it "should be able to wait on more than one pid"
+  it "should be able to optionally output when each of those several dies"
 
 end

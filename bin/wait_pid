@@ -1,6 +1,6 @@
 require 'wait_pid'
 
-if ARGV.include?('-h') || ARGV.include('--help')
+if ARGV.include?('-h') || ARGV.include?('--help') || ARGV.length == 0
   puts "syntax: pid"
   exit
 end

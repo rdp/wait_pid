@@ -1,17 +1,16 @@
 = wait_pid
 
-Description goes here.
+This provides a ruby library
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+WaitPid.wait_pid pid_number # waits until that process exits
 
-== Copyright
+and also a binary command
 
-Copyright (c) 2009 rdp. See LICENSE for details.
+$ wait_pid pid_number # waits until that process exits
+
+Currently it just polls 100 times/s to see if the process is still around.  If more granularity is needed let me know [it is possible, at least in windows, or a higher polling capability could be made optional in linux].
+
+Enjoy. Feedback welcome.
+
+http://github.com/rdp/wait_pid
+
