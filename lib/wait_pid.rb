@@ -20,4 +20,13 @@ class WaitPid
 
   end
 
+  def self.wait_pids *pids
+    require 'thwait'
+    all = []
+    pids.each{|pid|
+      all << Thread.new(pid) {|pid| WaitPid.wait_pid pid }
+    }
+    ThreadsWait.all_waits *all
+  end
+
 end
