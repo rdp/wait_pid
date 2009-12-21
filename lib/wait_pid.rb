@@ -1,7 +1,7 @@
 
 class WaitPid
 
-  def self.wait_pid(pid, test = false)
+  def self.wait_nonchild_pid(pid, test = false)
     # initial test
     count = 0
     begin
@@ -20,11 +20,11 @@ class WaitPid
 
   end
 
-  def self.wait_pids *pids
+  def self.wait_nonchild_pids *pids
     require 'thwait'
     all = []
     pids.each{|pid|
-      all << Thread.new(pid) {|pid| WaitPid.wait_pid pid }
+      all << Thread.new(pid) {|pid| WaitPid.wait_nonchild_pid pid }
     }
     ThreadsWait.all_waits *all
   end

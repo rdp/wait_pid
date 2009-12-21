@@ -21,19 +21,19 @@ end
 describe "wait pid" do
 
   it "should warn if a pid doesn't exist" do
-    out = WaitPid.wait_pid 1234, true
+    out = WaitPid.wait_nonchild_pid 1234, true
     out.should be_a(String)
   end
 
   it "should work without a second argument" do
-    WaitPid.wait_pid 1234
+    WaitPid.wait_nonchild_pid 1234
   end
 
 
   it "should wait on a pid" do
     a = spawn 'ruby -e "sleep 1"'
     start = Time.now
-    WaitPid.wait_pid(a)
+    WaitPid.wait_nonchild_pid(a)
     assert(Time.now - start > 0.5)
   end
 
@@ -41,7 +41,7 @@ describe "wait pid" do
       a = spawn 'ruby -e "sleep 0.5"'
       b = spawn 'ruby -e "sleep 1"'
       start = Time.now
-      WaitPid.wait_pids a, b
+      WaitPid.wait_nonchild_pids a, b
       assert(Time.now - start > 0.75)
   end
 
