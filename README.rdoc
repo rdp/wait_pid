@@ -1,16 +1,20 @@
 = wait_pid
 
-This provides a ruby library
+This provides a ruby library and also command line executable
 
 WaitPid.wait_pid pid_number # waits until that process exits
 
-and also a binary command
+command line:
 
 $ wait_pid pid_number # waits until that process exits
 
-Currently it just polls 100 times/s to see if the process is still around.  If more granularity is needed let me know [it is possible, at least in windows, or a higher polling capability could be made optional in linux].
+Currently it just polls 100 times/s to see if the process is still around.  
+Apparently in Linux there is no default way to wait for a pid to terminate that is *not* your child PID.
+This library works in windows or linux (since it just polls till they die).
+If more granularity is needed let me know [it is possible, at least in windows, or a higher polling 
+capability could be made optional in linux].
 
-Enjoy. Feedback welcome.
+Feedback welcome.
 
 http://github.com/rdp/wait_pid
 
